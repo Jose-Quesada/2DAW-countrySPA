@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { ByCapitalPageComponent } from './pages/by-capital-page/by-capital-page.component';
 import { ByCountryPageComponent } from './pages/by-country-page/by-country-page.component';
 import { ByRegionPageComponent } from './pages/by-region-page/by-region-page.component';
 import { CountryPageComponent } from './pages/country-page/country-page.component';
 
 
-const route: Routes = [
+const routes: Routes = [
   {
     path: 'by-capital' ,
     component: ByCapitalPageComponent,
@@ -23,11 +23,19 @@ const route: Routes = [
     path: 'by/:id' ,
     component: CountryPageComponent,
   },
+  {
+    path: '**',
+    redirectTo: 'by-capital',
+  }
 ]
 
 @NgModule({
-  imports: [],
-  exports: [],
+  imports: [
+    RouterModule.forChild(routes)
+  ],
+  exports: [
+    RouterModule
+  ],
 })
 
 export class CountriesRoutingModule { }

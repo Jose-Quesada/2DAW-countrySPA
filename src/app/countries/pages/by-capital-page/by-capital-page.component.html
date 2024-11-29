@@ -4,16 +4,18 @@
   <div class="col">
     <shared-search-box
     placeholder="Paso el placeholder"
-    (onValue)="searchByCapital($event)"
+    (onDebouncer)="searchByCapital($event)"
+
     ></shared-search-box>
   </div>
 </div>
 <hr>
 <div class="row">
   <div class="col">
-    <p *ngFor="let country of countries">
-      {{country.capital}} - {{country.population}}
-    </p>
+    <shared-loading-spinner *ngIf="isLoading"></shared-loading-spinner>
+    <countries-country-table
+    [countries]="countries"
+    ></countries-country-table>
 
   </div>
 </div>
